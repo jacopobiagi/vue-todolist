@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LINK FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/c0073e0e62.js" crossorigin="anonymous"></script>
+
+    <!-- LINK CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+</head>
+<body>
+    
+    <div id="app">
+
+        <div class="logo">
+            <img src="img/Logo.png" alt="logo">
+        </div>
+
+        <div class="new-task">
+            <input @keyup.enter="addTask" type="text" placeholder="nuova task" v-model="message" >
+            <button @click="addTask">aggiungi</button>
+
+            <div class="error" v-if="error">
+                <span>Devi inserire una task di almeno 5 caratteri</span>
+            </div>
+        </div>
+
+        <div class="tasks-container">
+
+            <ul v-if="todos.length > 0">
+                <li class="tasks" v-for="(todo,i) in todos">
+                    <s v-if="todo.done">{{todo.text}}</s>
+                    <span v-else>{{todo.text}}</span>
+                    <i class="fa-solid fa-xmark" @click="removeTask(i)"></i>
+                </li>
+            </ul>
+
+            <h2 v-else>Non ci sono taskkk</h2>
+            
+        </div>
+    </div>
+
+
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
